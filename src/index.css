@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.home-image {
+  position: relative;
+  width: 100%;
+}
+
+.home-text-header {
+  color: beige;
+  position: absolute;
+  top: 170px;
+  right: 30px;
+  font-family: "Cantique";
+  font-size: 50px;
+  font-weight: bold;
+  padding: 20px;
+  z-index: 1;
+}
