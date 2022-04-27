@@ -37,7 +37,7 @@ const SignIn = (props) => {
 			.then((res) => setUser(res.data.user))
 			.then(() =>
 				msgAlert({
-					heading: 'Sign In Success',
+					heading: 'Log In Success',
 					message: messages.signInSuccess,
 					variant: 'success',
 				})
@@ -47,7 +47,7 @@ const SignIn = (props) => {
                 setEmail('')
                 setPassword('')
 				msgAlert({
-					heading: 'Sign In Failed with error: ' + error.message,
+					heading: 'Log In Failed with error: ' + error.message,
 					message: messages.signInFailure,
 					variant: 'danger',
 				})
@@ -57,7 +57,7 @@ const SignIn = (props) => {
     return (
         <div className='row'>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign In</h3>
+                <h3>Log In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>
                         <Form.Label>Email address</Form.Label>
