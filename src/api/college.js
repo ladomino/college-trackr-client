@@ -24,7 +24,7 @@ export const getAllUntrackedColleges = (user) => {
 }
 
 // show function for one college
-export const getOnePlace = (user, collegeId) => {
+export const getOneCollege = (user, collegeId) => {
     return axios({
         url: `${apiUrl}/collegetkr/colleges/${collegeId}/`,
         method: 'GET',
@@ -35,7 +35,7 @@ export const getOnePlace = (user, collegeId) => {
 }
 
 // POST -> create function to create a college
-export const createPlace = (user, newCollege) => {
+export const createCollege = (user, newCollege) => {
     console.log('user', user)
     console.log('this is newCollege', newCollege)
     return axios({
@@ -44,12 +44,23 @@ export const createPlace = (user, newCollege) => {
         headers: {
             Authorization: `Token ${user.token}`
         },
-        data: { college: newCollege }
+        data: { 
+            college: {
+                name: newCollege.name,
+                city: newCollege.city,
+                state: newCollege.state,
+                image: newCollege.image,
+                early_decision: newCollege.earlyDecisionDate,
+                early_action: newCollege.earlyActionDate,
+                regular_decision: newCollege.regularDecisionDate,
+                app_home_link: newCollege.appHomeLink
+            }
+        }
     })
 }
 
 // POST -> create function to collegetrack 
-export const createTrack = (user, collegeId) => {
+export const createTrackCollege = (user, collegeId) => {
     console.log('user', user)
     console.log('this is collegeId', collegeId)
     return axios({

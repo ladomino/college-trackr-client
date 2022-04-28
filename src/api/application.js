@@ -33,7 +33,13 @@ export const createApplication = (user, collegeId, newApplication) => {
         headers: {
             Authorization: `Token ${user.token}`
         },
-        data: { college: newApplication }
+        data: { 
+            application: {
+                name: newApplication.name,
+                link: newApplication.link,
+                owner: user.id 
+            }
+        }
     })
 }
 
@@ -47,7 +53,13 @@ export const updateApplication = (user, appId, updatedApplication) => {
         headers: {
             Authorization: `Token ${user.token}`
         },
-        data: { place: updatedApplication }
+        data: { 
+            application: {
+                name: updatedApplication.name,
+                link: updatedApplication.link,
+                owner: user.id 
+            } 
+        }
     })
 }
 

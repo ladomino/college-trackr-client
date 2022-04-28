@@ -6,6 +6,12 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
+	createCollegeSuccess: 'College created successfully',
+	createCollegeFailure: 'Failed to create a College. Please try again',
+	createApplicationSuccess: 'The application was created successfully',
+	createApplicationFailure: 'Failed to create an application. Please try again',
+	createTaskSuccess: 'The task was created successfully',
+	createTaskFailure: 'Failed to create a task. Please try again',
 }
 
 module.exports = messages
