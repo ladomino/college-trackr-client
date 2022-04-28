@@ -32,3 +32,9 @@ code {
 .navbar-custom {
   background-color: brown;
 }
+
+.collegetracker-header {
+  color:  black;
+  padding: 5px;
+  margin-left: 10px;
+}

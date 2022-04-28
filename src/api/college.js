@@ -12,6 +12,16 @@ export const getAllColleges = (user) => {
     })
 }
 
+// index function to retrieve all colleges you have not tracked
+export const getAllUntrackedColleges = (user) => {
+    return axios({
+        url: `${apiUrl}/collegetkr/colleges/all/`,
+        method: 'GET',
+        headers: {
+            Authorization: `Token ${user.token}`
+        }
+    })
+}
 
 // show function for one college
 export const getOnePlace = (user, collegeId) => {
