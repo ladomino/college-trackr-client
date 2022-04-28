@@ -70,7 +70,7 @@ export const removeApplication = (user, appId) => {
         url: `${apiUrl}/collegetkr/apps/${appId}/delete/`,
         method: 'DELETE',
         headers: {
-            Authorization: `${user.token}`
+            Authorization: `Token ${user.token}`
         }
     })
 }

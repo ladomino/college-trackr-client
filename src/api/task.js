@@ -70,7 +70,7 @@ export const removeTask = (user, taskId) => {
         url: `${apiUrl}/collegetkr/tasks/${taskId}/delete/`,
         method: 'DELETE',
         headers: {
-            Authorization: `${user.token}`
+            Authorization: `Token ${user.token}`
         }
     })
 }
