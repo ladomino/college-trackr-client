@@ -8,6 +8,16 @@ const linkStyle = {
 }
 const authenticatedOptions = (
 	<>
+		<Nav.Item class="m-2">
+			<Link to='collegetkr/colleges/all/' style={linkStyle}>
+				All Colleges
+			</Link>
+		</Nav.Item>
+		<Nav.Item class="m-2">
+			<Link to='collegetkr/colleges/' style={linkStyle}>
+				Tracked Colleges
+			</Link>
+		</Nav.Item>
 		<Nav.Item className = "m-2">
 			<Link to='change-pw/' style={linkStyle}>
 				Change Password
@@ -41,6 +51,7 @@ const alwaysOptions = (
 		</Nav.Item>
 	</>
 )
+
 
 const Header = ({ user }) => (
 	<Navbar className='navbar-custom' variant='dark' expand='md'>
