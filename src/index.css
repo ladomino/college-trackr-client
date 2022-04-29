@@ -40,6 +40,26 @@ code {
 }
 
 .table-index-image {
-  width: 20%;
+  width: 30%;
 
+}
+
+.content {
+  padding: 10px;
+}
+
+.custom-btn {
+  background: #fff;
+  color: brown;
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+
+.about-text {
+  background: brown;
+  color: beige;
+  width: 500px;
+  margin: 0 auto 20px;
 }

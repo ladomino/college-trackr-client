@@ -18,6 +18,11 @@ const authenticatedOptions = (
 				Tracked Colleges
 			</Link>
 		</Nav.Item>
+		<Nav.Item class="m-2">
+			<Link to='collegetkr/apps/' style={linkStyle}>
+				View Applications
+			</Link>
+		</Nav.Item>
 		<Nav.Item className = "m-2">
 			<Link to='change-pw/' style={linkStyle}>
 				Change Password

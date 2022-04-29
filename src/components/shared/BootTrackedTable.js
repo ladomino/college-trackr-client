@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Table }from 'react-bootstrap'
 
-const BootTable = (props) => {
+// This Table is for all Tracked Colleges
+const BootTrackedTable = (props) => {
 
   const { itemArray } = props
 
@@ -32,7 +33,7 @@ const BootTable = (props) => {
             <td>{item.early_action}</td>
             <td>{item.early_decision}</td> 
             <td>{item.regular_decision}</td>
-            <td><a href={item.app_home_link} target="_blank">Application</a></td>
+            <td><a href={item.app_home_link} target="_blank">Apply</a></td>
             </tr>
           ))
         }
@@ -42,4 +43,4 @@ const BootTable = (props) => {
   )
 }
 
-export default BootTable
+export default BootTrackedTable

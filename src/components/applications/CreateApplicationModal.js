@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Modal } from 'react-bootstrap'
 import { createApplication } from '../../api/application'
 import { createApplicationSuccess, createApplicationFailure } from '../shared/AutoDismissAlert/messages'
 import { useNavigate } from 'react-router-dom'
@@ -10,13 +11,15 @@ import ApplicationForm from '../shared/ApplicationForm'
 ////////////////////////////////////////////////////////////////
 const CreateApplication = (props) => {
 
-    const { user, msgAlert } = props
+    const { user, show, handleClose, msgAlert, triggerRefresh } = props
     console.log('user in create application', user)
     const navigate = useNavigate()
 
     // we'll need two states
     const [application, setApplication] = useState({
-        name: '', link: ''
+        'name': ' ', 
+        'link': ' ',
+        'owner': user.id
     })
 
     // console.log('In create college', college)
@@ -25,7 +28,7 @@ const CreateApplication = (props) => {
         // e === event
         e.persist()
 
-        setApplication(prevCollege => {
+        setApplication(prevApplication => {
             const name = e.target.name
             let value = e.target.value
 
@@ -45,8 +48,8 @@ const CreateApplication = (props) => {
         e.preventDefault()
 
         createApplication(user, application)
-            // REVISIT - not sure where to navigate back to yet.
-            .then(res => { navigate(`/collegetkr/colleges/`) })
+            // navigate back to the application list
+            .then(res => { navigate(`/collegetkr/apps/`) })
             // then we send a success message
             .then(() =>
                 msgAlert({
@@ -65,12 +68,17 @@ const CreateApplication = (props) => {
     }
 
     return (
-        <ApplicationForm
-            application={application}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            heading="Add a new application!"
-        />
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>
+                <ApplicationForm
+                    application={application}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    heading="Create an Application"
+                />
+            </Modal.Body>
+        </Modal>
     )
 }
 

@@ -1,49 +1,48 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import BootTrackOneTable from '../shared/BootTrackOneTable.js'
-import { indexCollegeSuccess, indexCollegeFailure } from '../shared/AutoDismissAlert/messages'
-import { getAllUntrackedColleges } from '../../api/college'
-import CreateCollegeModal from './CreateCollegeModal'
+import BootApplicationTable from '../shared/BootApplicationTable.js'
+import { indexApplicationSuccess, indexApplicationFailure } from '../shared/AutoDismissAlert/messages'
+import { getAllApplications } from '../../api/application'
+import CreateApplicationModal from './CreateApplicationModal'
 
-// THIS GETS ALL UNTRACKED Colleges
-const IndexCollege = (props) => {
+const IndexApplication = (props) => {
 
-    console.log("INSIDE INDEX COLLEGE")
+    console.log("INSIDE INDEX APPLICATION")
 
-    const [colleges, setColleges] = useState(null)
+    const [applications, setApplications] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
     const { user, msgAlert } = props
 
-    console.log("IndexCollege: user: ", user)
+    console.log("IndexApplication: user: ", user)
 
     useEffect(() => {
-        getAllUntrackedColleges(user)
+        getAllApplications(user)
             .then(res => {
-                setColleges(res.data.colleges)
+                setApplications(res.data.applications)
                 // console.log("res.data", res.data);
-                // console.log("IndexColleges: colleges: ", colleges)
+                // console.log("IndexApplications: applications: ", applications)
             })
             .then(() => {
                 msgAlert({
-                    heading: 'Untracked colleges have been retrieved!',
-                    message: indexCollegeSuccess,
+                    heading: 'Applications have been retrieved!',
+                    message: indexApplicationSuccess,
                     variant: 'success',
                 })
             })
             .catch(() => {
                 msgAlert({
-                    heading: 'Failed to retrieve untracked colleges!',
-                    message: indexCollegeFailure,
+                    heading: 'Failed to retrieve applications!',
+                    message: indexApplicationFailure,
                     variant: 'danger',
                 })
             })
     }, [])
 
-    if (!colleges) {
+    if (!applications) {
         return <p>Loading ...</p>
-    } else if (colleges.length === 0) {
-        return <p>No untracked colleges yet, go add some</p>
+    } else if (applications.length === 0) {
+        return <p>No applications yet, go add some</p>
     }
 
     return (
@@ -51,13 +50,13 @@ const IndexCollege = (props) => {
             <div>
                  <div className="content" style={{display: 'flex', justifyContent: 'flex-end'}} >
                     <Button className="custom-btn" onClick={() => setModalOpen(true)}>
-                    New College
+                    New Application
                     </Button>
                  </div>
-                <BootTrackOneTable itemArray={colleges}/>
+                <BootApplicationTable itemArray={applications}/>
                  <a href="#top"><Button variant='dark'>Back to Top of Page</Button></a>
             </div>
-            <CreateCollegeModal
+            <CreateApplicationModal
                 show={modalOpen}
                 user={user}
                 msgAlert={msgAlert}
@@ -67,5 +66,4 @@ const IndexCollege = (props) => {
     )
 }
 
-export default IndexCollege
-
+export default IndexApplication

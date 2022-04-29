@@ -8,12 +8,14 @@ import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAl
 import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
 import Home from './components/Home'
+import About from './components/About'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import IndexCollege from './components/colleges/IndexCollege'
 import IndexTrackCollege from './components/colleges/IndexTrackCollege'
+import IndexApplication from './components/applications/IndexApplication'
 
 const App = () => {
 
@@ -49,6 +51,7 @@ const App = () => {
 			<Route path='/' 
 				element={<Home msgAlert={msgAlert} setUser={setUser} />} />
 
+
 			<Route path='/collegetkr/colleges/all'
 				element={
 					<RequireAuth user={user}>
@@ -60,6 +63,13 @@ const App = () => {
 				element={
 					<RequireAuth user={user}>
 					<IndexTrackCollege msgAlert={msgAlert} user={user} />
+					</RequireAuth>
+				}
+			/>
+			<Route path='/collegetkr/apps/'
+				element={
+					<RequireAuth user={user}>
+					<IndexApplication msgAlert={msgAlert} user={user} />
 					</RequireAuth>
 				}
 			/>
