@@ -1,12 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button }from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { createTrackCollege } from '../../api/college'
+import { collegeTrackSuccess, collegeTrackFailure } from '../shared/AutoDismissAlert/messages'
 
 // This Table is for ALL UNTRACKED Colleges
 const BootTrackOneTable = (props) => {
 
   const { itemArray } = props
+  const { user, msgAlert } = props
+  const navigate = useNavigate()
 
+
+  // Create the CollegetoTrack entry
+  const createTrack = (collegeId) => {
+    createTrackCollege(user, collegeId)
+        .then(() => {
+            msgAlert({
+                heading: 'The college is being tracked!',
+                message: collegeTrackSuccess,
+                variant: 'success',
+            })
+        })
+        .then(() => { navigate(`/collegetkr/colleges/`) })
+        .catch(() => {
+            msgAlert({
+                heading: 'Failed to track the college!',
+                message: collegeTrackFailure,
+                variant: 'danger',
+            })
+        })
+  }
   let collegeTable 
 
   if (itemArray.length > 0) {
@@ -21,18 +46,17 @@ const BootTrackOneTable = (props) => {
             <td>{item.regular_decision}</td>
             <td><a href={item.app_home_link} target="_blank">Apply</a></td>
             <td>
-                <Link to={`/collegetkr/colleges/${item.id}/`}>
+                <Link to={`/collegetkr/colleges/${item.id}/track/`}>
                     <Button className='btn btn-dark'>Details</Button>
                 </Link>
             </td>
             <td>
-                <Link to={`/collegetkr/colleges/${item.id}/track/`}>
-                    <Button className='btn btn-dark'>Track</Button>
-                </Link>
+                <Button onClick={() => createTrack(item.id)} className='btn btn-dark' type='submit'>Track</Button>
             </td>
             </tr>
     ))
   }
+
 
   return (
     <div>

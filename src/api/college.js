@@ -68,6 +68,10 @@ export const createTrackCollege = (user, collegeId) => {
         method: 'POST',
         headers: {
             Authorization: `Token ${user.token}`
+        },
+        data: { 
+            trackcollege: {
+            }
         }
     })
 }

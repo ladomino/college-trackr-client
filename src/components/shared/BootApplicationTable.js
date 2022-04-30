@@ -23,7 +23,6 @@ const BootApplicationTable = (props) => {
         <Table striped bordered hover size="sm">
         <thead>
             <tr>
-            <th></th>
             <th>Application Name</th>
             <th>Application Link</th>
             </tr>

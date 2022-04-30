@@ -18,6 +18,8 @@ const messages = {
 	indexTrackCollegeFailure: 'Failed to get tracked colleges. Please try again.',
 	indexApplicationSuccess: 'Applications retrieved successfully',
 	indexApplicationFailure: 'Failed to get applications. Please try again.',
+	collegeTrackSuccess: 'College is being tracked successfully',
+	collegeTrackFailure: 'Failed to track the college. Please try again.',
 }
 
 module.exports = messages

@@ -24,11 +24,11 @@ export const getOneApplication = (user, appId) => {
 }
 
 // POST -> create function to create a college application
-export const createApplication = (user, collegeId, newApplication) => {
+export const createApplication = (user, newApplication) => {
     console.log('user', user)
     console.log('this is newApplication', newApplication)
     return axios({
-        url: `${apiUrl}/collegetkr/apps/${collegeId}/create/`,
+        url: `${apiUrl}/collegetkr/apps/create/`,
         method: 'POST',
         headers: {
             Authorization: `Token ${user.token}`
