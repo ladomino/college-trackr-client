@@ -55,7 +55,6 @@ const IndexCollege = (props) => {
                     </Button>
                  </div>
                 <BootTrackOneTable user={user} msgAlert={msgAlert} itemArray={colleges}/>
-                 <a href="#top"><Button variant='dark'>Back to Top of Page</Button></a>
             </div>
             <CreateCollegeModal
                 show={modalOpen}

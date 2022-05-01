@@ -14,6 +14,7 @@ export const getAllApplications = (user) => {
 
 // show-details function for one application
 export const getOneApplication = (user, appId) => {
+    console.log('this is the application id', appId)
     return axios({
         url: `${apiUrl}/collegetkr/apps/${appId}/`,
         method: 'GET',
@@ -46,9 +47,10 @@ export const createApplication = (user, newApplication) => {
 // PATCH -> update function
 export const updateApplication = (user, appId, updatedApplication) => {
     console.log('user', user)
-    console.log('this is updatedPlace', updatedApplication)
+    console.log('this is updatedApplication', updatedApplication)
+    console.log('appId', appId)
     return axios({
-        url: `${apiUrl}/collegetkr/apps/${appId}/create/`,
+        url: `${apiUrl}/collegetkr/apps/${appId}/update/`,
         method: 'PATCH',
         headers: {
             Authorization: `Token ${user.token}`

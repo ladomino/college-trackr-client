@@ -4,6 +4,7 @@ import axios from 'axios'
 // index function to retrieve all collegetoapplications which 
 //    is by application id
 export const getAllCollegeApplications = (user, appId) => {
+    console.log("In getAllCollegeApplications")
     return axios({
         url: `${apiUrl}/collegetkr/collegeapps/${appId}/all/`,
         method: 'GET',

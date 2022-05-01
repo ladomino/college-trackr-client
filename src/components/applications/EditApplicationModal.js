@@ -1,28 +1,12 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
-import { createApplication } from '../../api/application'
-import { createApplicationSuccess, createApplicationFailure } from '../shared/AutoDismissAlert/messages'
-import { useNavigate } from 'react-router-dom'
 import ApplicationForm from '../shared/ApplicationForm'
+import { editApplicationSuccess, editApplicationFailure } from '../shared/AutoDismissAlert/messages'
 
-////////////////////////////////////////////////////////////////
-// Create Application renders a form and calls the createApplication 
-// function props necessary are user and msgAlert
-////////////////////////////////////////////////////////////////
-const CreateApplication = (props) => {
-
-    const { user, show, handleClose, msgAlert, triggerRefresh } = props
-    console.log('user in create application', user)
-    const navigate = useNavigate()
-
-    // Save state of application
-    const [application, setApplication] = useState({
-        'name': ' ', 
-        'link': ' ',
-        'owner': user.id
-    })
-
-    // console.log('In create application', application)
+const EditApplicationModal = (props) => {
+    const { appId, user, show, handleClose, updateApplication, msgAlert, triggerRefresh } = props
+    const [application, setApplication] = useState(props.application)
+    console.log("EditApplicationModal: props.application:", props.application)
 
     const handleChange = (e) => {
         // e === event
@@ -31,8 +15,8 @@ const CreateApplication = (props) => {
         setApplication(prevApplication => {
             const name = e.target.name
             let value = e.target.value
-
             console.log('etarget type', e.target.type)
+            console.log('this is e.target checked', e.target.checked)
 
             const updatedValue = { [name]: value }
 
@@ -47,24 +31,31 @@ const CreateApplication = (props) => {
         // e === event
         e.preventDefault()
 
-        createApplication(user, application)
-            // navigate back to the application list
-            .then(res => { navigate(`/collegetkr/apps/`) })
+        updateApplication(user, appId, application)
+            // if create is successful, we should navigate to the show page
+            .then(() => handleClose())
             // then we send a success message
             .then(() =>
                 msgAlert({
-                    heading: 'The application has been Added!',
-                    message: createApplicationSuccess,
+                    heading: 'Your Application has been updated successfully!',
+                    message: editApplicationSuccess,
                     variant: 'success',
                 }))
+            .then(() => triggerRefresh())
             // if there is an error, we'll send an error message
             .catch(() =>
                 msgAlert({
-                    heading: 'Failed to create an application!',
-                    message: createApplicationFailure,
+                    heading: 'Oh No!',
+                    message: editApplicationFailure,
                     variant: 'danger',
                 }))
         // console.log('this is the application', application)
+    }
+
+    if (!application) {
+        return <p>loading...</p>
+    } else if (application.length === 0) {
+        return <p>No application here</p>
     }
 
     return (
@@ -75,11 +66,11 @@ const CreateApplication = (props) => {
                     application={application}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
-                    heading="Create an Application"
+                    heading="Edit Application!"
                 />
             </Modal.Body>
         </Modal>
     )
 }
 
-export default CreateApplication
+export default EditApplicationModal

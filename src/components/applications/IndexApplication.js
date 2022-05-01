@@ -53,9 +53,9 @@ const IndexApplication = (props) => {
                     New Application
                     </Button>
                  </div>
-                <BootApplicationTable itemArray={applications}/>
-                 <a href="#top"><Button variant='dark'>Back to Top of Page</Button></a>
+                <BootApplicationTable itemArray={applications} user={user}/>
             </div>
+
             <CreateApplicationModal
                 show={modalOpen}
                 user={user}

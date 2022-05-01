@@ -16,6 +16,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import IndexCollege from './components/colleges/IndexCollege'
 import IndexTrackCollege from './components/colleges/IndexTrackCollege'
 import IndexApplication from './components/applications/IndexApplication'
+import ShowApplication from  './components/applications/ShowApplication'
 
 const App = () => {
 
@@ -70,6 +71,13 @@ const App = () => {
 				element={
 					<RequireAuth user={user}>
 					<IndexApplication msgAlert={msgAlert} user={user} />
+					</RequireAuth>
+				}
+			/>
+			<Route path='/collegetkr/apps/:appId'
+				element={
+					<RequireAuth user={user}>
+					<ShowApplication msgAlert={msgAlert} user={user} />
 					</RequireAuth>
 				}
 			/>
