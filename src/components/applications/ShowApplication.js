@@ -4,14 +4,12 @@ import { useParams } from 'react-router-dom'
 import { showApplicationSuccess, showApplicationFailure } from '../shared/AutoDismissAlert/messages'
 import { getOneApplication, updateApplication } from '../../api/application'
 import EditApplicationModal from './EditApplicationModal'
-import { getOneCollegeApplication } from '../../api/collegeapplication'
 
 const ShowApplication = (props) => {
 
     console.log("INSIDE SHOW APPLICATION")
 
     const [application, setApplication] = useState(null)
-    const [collegeapplication, setCollegeApplication] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
     
@@ -52,7 +50,6 @@ const ShowApplication = (props) => {
         return <p>No application here</p>
     }
 
-    console.log("HELLLLLLLLO", collegeapplication)
 
     return (
         <>

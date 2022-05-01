@@ -12,6 +12,7 @@ const IndexApplication = (props) => {
 
     const [applications, setApplications] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
+    const [created, setCreated] = useState(false)
     const { user, msgAlert } = props
 
     console.log("IndexApplication: user: ", user)
@@ -37,7 +38,7 @@ const IndexApplication = (props) => {
                     variant: 'danger',
                 })
             })
-    }, [])
+    }, [created])
 
     if (!applications) {
         return <p>Loading ...</p>
@@ -53,13 +54,14 @@ const IndexApplication = (props) => {
                     New Application
                     </Button>
                  </div>
-                <BootApplicationTable itemArray={applications} user={user}/>
+                <BootApplicationTable itemArray={applications} msgAlert={msgAlert} user={user}/>
             </div>
 
             <CreateApplicationModal
                 show={modalOpen}
                 user={user}
                 msgAlert={msgAlert}
+                triggerRefresh={() => setCreated(prev => !prev)}
                 handleClose={() => setModalOpen(false)}
             />
         </>

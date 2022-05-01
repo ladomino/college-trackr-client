@@ -49,6 +49,7 @@ const CreateApplication = (props) => {
 
         createApplication(user, application)
             // navigate back to the application list
+            .then( () => triggerRefresh() )
             .then(res => { navigate(`/collegetkr/apps/`) })
             // then we send a success message
             .then(() =>
@@ -75,6 +76,7 @@ const CreateApplication = (props) => {
                     application={application}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
+                    triggerRefresh={triggerRefresh}
                     heading="Create an Application"
                 />
             </Modal.Body>

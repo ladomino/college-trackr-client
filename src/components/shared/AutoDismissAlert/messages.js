@@ -24,6 +24,11 @@ const messages = {
 	showApplicationFailure: 'Failed to get application. Please try again.',
 	editCollegeApplicationSuccess: 'College Application details retrieved successfully',
 	editCollegeApplicationFailure: 'Failed to get college application details. Please try again.',
+	removeApplicationSuccess: 'The application has been deleted',
+	removeApplicationFailure: 'Failed to delete the application',
+	showCollegeApplicationSuccess: 'College Application details retrieved successfully',
+	showCollegeApplicationFailure: 'Failed to get college application details. Please try again.',
+
 }
 
 module.exports = messages

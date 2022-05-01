@@ -1,13 +1,38 @@
 import React, { useState } from 'react'
-import { Form, Container, Table, Button }from 'react-bootstrap'
+import { Table, Button }from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { removeApplicationSuccess, removeApplicationFailure } from '../shared/AutoDismissAlert/messages'
+import { removeApplication } from '../../api/application'
 
 const BootApplicationTable = (props) => {
 
   const { itemArray } = props
   const { user, msgAlert } = props
+  const navigate = useNavigate()
   console.log("App Table: props: ", itemArray)
 
+
+  const removeSpecificApplication = (id) => {
+    // console.log("removeApplication")
+
+    removeApplication(user, id)
+        .then(() => {
+            msgAlert({
+                heading: 'The application has been removed!',
+                message: removeApplicationSuccess,
+                variant: 'success',
+            })
+        })
+        .then(() => { navigate(`/collegetkr/apps/`) })
+        .catch(() => {
+            msgAlert({
+                heading: 'Application deletion failed.',
+                message: removeApplicationFailure,
+                variant: 'danger',
+            })
+        })
+  }
 
   let applicationTable 
 
@@ -15,7 +40,7 @@ const BootApplicationTable = (props) => {
     applicationTable = itemArray.map((item) => (
             <tr key={item.id}>
             <td>
-            <Link to={`/collegetkr/apps/${item.id}/`} user={user}>
+            <Link to={`/collegetkr/collegeapps/${item.id}/`} user={user}>
               {item.name}
             </Link>
             </td>
@@ -31,9 +56,7 @@ const BootApplicationTable = (props) => {
               </Link>
             </td>
             <td>
-                <Link to={`/collegetkr/apps/${item.id}/delete/`}>
-                    <Button className='btn btn-dark'>Delete</Button>
-                </Link>
+                <Button onClick={() => removeSpecificApplication(item.id)} className='btn btn-dark'>Delete</Button>
             </td>
             </tr>
     ))

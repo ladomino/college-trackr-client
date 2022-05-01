@@ -63,3 +63,45 @@ code {
   width: 500px;
   margin: 0 auto 20px;
 }
+
+.collegetracker_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: space-evenly;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+margin: 5px;
+padding: 40px;
+width: 300px;
+border-radius: 10px;
+box-shadow: 1px 4px 10px 0 #5e2104f7;
+zoom: 100%;
+background-color: #faf0e6;
+}
+
+.card-image {
+  width: 60%;
+  padding: 10px;
+}
+
+.card-description {
+  text-align: left;
+  padding: 10px;
+}
+
+.card-details {
+  text-align: left;
+  padding: 10px;
+}
+
+.card-title {
+  text-align: center;
+}
+.card-footer {
+  text-align: right;
+}

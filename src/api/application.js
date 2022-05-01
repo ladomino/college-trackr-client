@@ -67,6 +67,7 @@ export const updateApplication = (user, appId, updatedApplication) => {
 
 // DELETE -> remove function
 export const removeApplication = (user, appId) => {
+    console.log("DELETE")
     console.log('user', user)
     return axios({
         url: `${apiUrl}/collegetkr/apps/${appId}/delete/`,
