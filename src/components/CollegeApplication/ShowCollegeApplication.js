@@ -13,14 +13,16 @@ const ShowCollegeApplication = (props) => {
     // Setup user and appId from params
     const { user, msgAlert } = props
     const { appId } = useParams()
+    
 
-    console.log("ShowApplication: user: ", user)
+    console.log("ShowCollegeApplication: user: ", user)
     console.log("AppId", appId)
 
     useEffect(() => {
         console.log("HELLO")
         getOneCollegeApplication(user, appId)
             .then(res => {
+                console.log("WHY AM I NOT HERE")
                 setCollegeApplication(res.data.collegeapplication)
                 console.log("res.data", res.data);
                 console.log("ShowCollegeApplications: collegeapplication: ", collegeapplication)
@@ -41,6 +43,7 @@ const ShowCollegeApplication = (props) => {
             })
     }, [])
 
+    
     if (!collegeapplication) {
         return <p>loading...</p>
     } else if (collegeapplication.length === 0) {
@@ -76,7 +79,7 @@ const ShowCollegeApplication = (props) => {
                                 <p></p>
                                 <small><b>Regular Decision:</b><br/> {collegeapplication.college.regular_decision}</small><br />
                                 <p></p>
-                                <small><b><a href={collegeapplication.college.app_home_link}>Apply</a></b><br/>
+                                <small><b><a href={collegeapplication.college.app_home_link} target="_blank">Apply</a></b><br/>
                                 </small><br />
                                 <p></p>
                             </Card.Text>
@@ -85,7 +88,40 @@ const ShowCollegeApplication = (props) => {
                     </div>
                     <div className="container">
                         <h2>Application</h2>
-                        <h2>Application Status</h2>
+                        <Card>
+                        <Card.Header className='card-title'>
+                            <h4>{collegeapplication.application.name}</h4>
+                        </Card.Header>
+                        <Card.Body className="d-flex justify-content-start">
+                            <Card.Text className="card-location">
+                                <small><b>Date Submitted:</b><br/> {collegeapplication.date_submitted}</small><br />
+                                <p></p>
+                                <small><b>In progress:</b><br/>{collegeapplication.in_progress ? 'yes' : 'no'}</small><br />
+                                <p></p>
+                                <small><b>Hold:</b><br/>{collegeapplication.hold ? 'yes' : 'no'}</small><br />
+                                <p></p>
+                                <small><b>Are you applying for Early Decision? </b><br/>{collegeapplication.early_decision ? 'yes' : 'no'}</small><br />
+                                <p></p>
+                                <small><b>Are you applying for Early Action? </b><br/>{collegeapplication.early_action ? 'yes' : 'no'}</small><br />
+                                <p></p>
+                                <small><b>Are you applying for Regular Decision? </b><br/>{collegeapplication.regular_decision ? 'yes' : 'no'}</small><br />
+                            </Card.Text>
+                        </Card.Body>
+                         <Card.Footer>
+                            <Card.Text className="card-details">
+                                <small><b>College Early Decision Deadline:</b><br/> {collegeapplication.college.early_decision}</small><br />
+                                <p></p>
+                                <small><b>College Early Action Deadline:</b><br/> {collegeapplication.college.early_action}</small><br />
+                                <p></p>
+                                <small><b>College Regular Decision Deadline:</b><br/> {collegeapplication.college.regular_decision}</small><br />
+                                <p></p>
+                                <small><b><a href={collegeapplication.application.link}>Your Application</a></b><br/>
+                                </small><br />
+                                <p></p>
+                            </Card.Text>
+                        </Card.Footer>
+
+                        </Card>
                     </div>
                 </div>
             </div>

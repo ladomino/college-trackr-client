@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { showApplicationSuccess, showApplicationFailure } from '../shared/AutoDismissAlert/messages'
 import { getOneApplication, updateApplication } from '../../api/application'
 import EditApplicationModal from './EditApplicationModal'
+import { removeApplicationSuccess, removeApplicationFailure } from '../shared/AutoDismissAlert/messages'
+import { removeApplication } from '../../api/application'
+
 
 const ShowApplication = (props) => {
 
@@ -12,6 +16,7 @@ const ShowApplication = (props) => {
     const [application, setApplication] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
+    const navigate = useNavigate()
     
     // Setup user and appId from params
     const { user, msgAlert } = props
@@ -44,6 +49,27 @@ const ShowApplication = (props) => {
             })
     }, [updated])
 
+    const removeSpecificApplication = (id) => {
+        // console.log("removeApplication")
+    
+          removeApplication(user, id)
+              .then(() => {
+                  msgAlert({
+                      heading: 'The application has been removed!',
+                      message: removeApplicationSuccess,
+                      variant: 'success',
+                  })
+              })
+              .then(() => { navigate(`/collegetkr/apps/`) })
+              .catch(() => {
+                  msgAlert({
+                      heading: 'Application deletion failed.',
+                      message: removeApplicationFailure,
+                      variant: 'danger',
+                  })
+              })
+    }
+
     if (!application) {
         return <p>loading...</p>
     } else if (application.length === 0) {
@@ -61,22 +87,20 @@ const ShowApplication = (props) => {
                     <th>Application Name</th>
                     <th>Application Link</th>
                     <th>Edit Application</th>
-                    <th>Application Dates</th>
+                    <th>Delete Application</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                     <td>{application.name}</td>
-                    <td>{application.link}</td>
+                    <td><a href={application.link} target="_blank">Your Application</a></td>
                     <td>
                     <Button className='m-2 btn btn-dark' onClick={() => setModalOpen(true)}>
                         Edit
                     </Button>
                     </td>
                     <td>
-                    <Button className='m-2 btn btn-dark' onClick={() => setModalOpen(true)}>
-                        Dates
-                    </Button>  
+                     <Button onClick={() => removeSpecificApplication(application.id)} className='btn btn-dark'>Delete</Button>
                     </td>
                     </tr>
                 </tbody>

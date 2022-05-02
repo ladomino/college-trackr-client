@@ -75,6 +75,13 @@ const App = () => {
 					</RequireAuth>
 				}
 			/>
+			<Route path='/collegetkr/collegeapps/one/:appId'
+				element={
+					<RequireAuth user={user}>
+					<ShowCollegeApplication msgAlert={msgAlert} user={user} />
+					</RequireAuth>
+				}	
+			/>
 			<Route path='/collegetkr/apps/:appId'
 				element={
 					<RequireAuth user={user}>
@@ -82,14 +89,6 @@ const App = () => {
 					</RequireAuth>
 				}
 			/>
-			<Route path='/collegetkr/collegeapps/:appId'
-				element={
-					<RequireAuth user={user}>
-					<ShowCollegeApplication msgAlert={msgAlert} user={user} />
-					</RequireAuth>
-				}	
-			/>
-
 			<Route
 				path='/signup/'
 				element={<SignUp msgAlert={msgAlert} setUser={setUser} />}

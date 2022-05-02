@@ -16,8 +16,9 @@ export const getAllCollegeApplications = (user, appId) => {
 
 // show-details function for one collegetoapplication
 export const getOneCollegeApplication = (user, appId) => {
+    console.log("Inside getOneCollegeApplication")
     return axios({
-        url: `${apiUrl}/collegetkr/collegeapps/${appId}/`,
+        url: `${apiUrl}/collegetkr/collegeapps/one/${appId}/`,
         method: 'GET',
         headers: {
             Authorization: `Token ${user.token}`
